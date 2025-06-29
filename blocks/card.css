@@ -31,3 +31,8 @@
   background-color: transparent;
   opacity: 40%;
 }
+
+.card__heart-icon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
