@@ -1,21 +1,47 @@
-# Project 3: Spots
+# se_project_spots
 
-### Overview  
+⚡ A static website showcasing software engineering projects, built with GitHub Pages.
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+🔗 Live site: [https://linknn.github.io/se_project_spots/](https://linknn.github.io/se_project_spots/)
+
+---
+
+## 🧠 About the Project
+
+A simple, static portfolio-style website highlighting software engineering projects, live on GitHub Pages. Its purpose is to:
+
+- Provide a clean, modern layout and responsive design
+- Make it easy to add new projects or structure existing ones
+
+---
+
+## ⭐ Features
+
+- Responsive design for desktop and mobile
+- Page navigation (header/footer menu)
+- Easy content updates via HTML and Markdown
+- Hosted directly on GitHub Pages
+
+---
+
+## 🛠 Tech Stack
+
+- **HTML5** & **CSS3** _(responsive, semantic)_
+- **GitHub Pages** _(for hosting)_
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Git
+- (Optional) A code editor (e.g. VS Code, Sublime, Atom)
+
+### Installation
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/linknn/se_project_spots.git
+   cd se_project_spots
+   ```
