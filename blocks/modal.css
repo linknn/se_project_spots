@@ -1,3 +1,7 @@
+.modal_is-opened {
+  visibility: visible;
+}
+
 .modal {
   visibility: hidden;
   background-color: #00000080;
@@ -12,9 +16,6 @@
   padding: 10px;
 }
 
-.modal_is-opened {
-  visibility: visible;
-}
 .modal__container {
   background-color: white;
   padding: 32px 50px;
@@ -69,7 +70,6 @@
   margin: 8px 0 0;
   width: 100%;
   padding: 16px 7px 16px 12px;
-
   text-overflow: ellipsis;
 }
 
