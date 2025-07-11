@@ -139,6 +139,34 @@
           </form>
         </div>
       </div>
+      <div class="modal modal_is-opened">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__title">New post</h2>
+            <button class="modal__close-btn" type="button">
+              <img src="./images/close-x.png" alt="x-icon" />
+            </button>
+          </div>
+          <form class="modal__form">
+            <label for="card-image-input" class="modal__label"
+              >Image link<input
+                id="card-image-input"
+                type="url"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+            /></label>
+            <label for="card-caption-input" class="modal__label"
+              >Caption
+              <input
+                id="card-caption-input"
+                type="text"
+                class="modal__input"
+                placeholder="Type your caption"
+            /></label>
+            <button class="modal__submit" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>

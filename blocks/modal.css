@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 
 .modal_is-opened {
@@ -52,7 +53,6 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  /* gap: 8px; */
 }
 
 .modal__label {
@@ -68,7 +68,9 @@
   border: 1px solid rgba(33, 33, 33, 0.4);
   margin: 8px 0 0;
   width: 100%;
-  padding: 16px 0 16px 12px;
+  padding: 16px 7px 16px 12px;
+
+  text-overflow: ellipsis;
 }
 
 .modal__input::placeholder {
@@ -93,4 +95,11 @@
 .modal__submit:hover {
   cursor: pointer;
   opacity: 80%;
+}
+
+@media screen and (max-width: 630px) {
+  .modal__submit {
+    width: 100%;
+    max-width: none;
+  }
 }
