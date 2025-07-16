@@ -110,5 +110,10 @@
 
   .modal__title {
     font-size: 20px;
+    margin: 0 0 24px;
+  }
+
+  .modal__label {
+    margin: 0 0 24px;
   }
 }
