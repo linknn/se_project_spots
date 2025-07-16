@@ -71,6 +71,7 @@
   width: 100%;
   padding: 16px 7px 16px 12px;
   text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
 .modal__input::placeholder {
@@ -98,8 +99,16 @@
 }
 
 @media screen and (max-width: 630px) {
+  .modal__container {
+    padding: 12px;
+  }
+
   .modal__submit {
     width: 100%;
     max-width: none;
+  }
+
+  .modal__title {
+    font-size: 20px;
   }
 }
