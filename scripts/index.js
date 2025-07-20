@@ -53,3 +53,7 @@ newPostBtn.addEventListener("click", function () {
 newPostCloseBtn.addEventListener("click", function () {
   newPostModal.classList.remove("modal_is-opened");
 });
+
+initialCards.forEach(function (card) {
+  console.log(card.name);
+});
