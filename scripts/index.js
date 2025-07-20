@@ -1,3 +1,35 @@
+const initialCards = [
+  {
+    name: "Snowy owl",
+    link: "https://plus.unsplash.com/premium_photo-1674275698987-3bf078858747?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+  {
+    name: "Waving owl",
+    link: "https://images.unsplash.com/photo-1516233758813-a38d024919c5?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+  {
+    name: "White and brown owl on a petaled field",
+    link: "https://images.unsplash.com/photo-1467811884194-ae868cd3f090?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+  {
+    name: "Owl eyes in the back of its head",
+    link: "https://images.unsplash.com/photo-1543549789-add7e987e50a?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+  {
+    name: "Owl eye close up",
+    link: "https://plus.unsplash.com/premium_photo-1675188410515-f5886e29c09e?q=80&w=684&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+  {
+    name: "Greyscale owl head",
+    link: "https://images.unsplash.com/photo-1627787489784-4abd690c03c2?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];
+
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
 const profileEditCloseBtn = profileEditModal.querySelector(".modal__close-btn");
