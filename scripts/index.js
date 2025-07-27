@@ -94,6 +94,7 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+// Edit profile information
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -104,16 +105,24 @@ function handleProfileFormSubmit(evt) {
 
 profileEditFormEl.addEventListener("submit", handleProfileFormSubmit);
 
+// Create new cards
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  console.log(newPostNameInput.value);
-  console.log(newPostLinkInput.value);
+  const inputValues = {
+    name: newPostNameInput.value,
+    link: newPostLinkInput.value,
+  };
+
+  const card = getCardElement(inputValues);
+  cardsList.prepend(card);
+
   closeModal(newPostModal);
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 
+// Add new cards to DOM
 initialCards.forEach(function (item) {
   const card = getCardElement(item);
   cardsList.append(card);
