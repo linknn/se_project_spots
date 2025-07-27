@@ -51,6 +51,12 @@ const newPostFormEl = newPostModal.querySelector(".modal__form");
 const newPostNameInput = document.querySelector("#card-caption-input");
 const newPostLinkInput = document.querySelector("#card-image-input");
 
+const cardTemplate = document.querySelector("#card-template");
+
+function getCardElement(data) {
+  console.log(data);
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
@@ -98,5 +104,5 @@ function handleAddCardSubmit(evt) {
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach(function (card) {
-  console.log(card.name);
+  getCardElement(card);
 });
