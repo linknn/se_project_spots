@@ -28,6 +28,11 @@ const initialCards = [
     name: "Greyscale owl head",
     link: "https://images.unsplash.com/photo-1627787489784-4abd690c03c2?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
@@ -65,9 +70,17 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  // Card like button
   const cardHeartIconEl = cardElement.querySelector(".card__heart-icon");
   cardHeartIconEl.addEventListener("click", () => {
     cardHeartIconEl.classList.toggle("card__heart-icon_active");
+  });
+
+  // Card delete
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
+  cardDeleteBtnEl.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
   });
 
   return cardElement;
