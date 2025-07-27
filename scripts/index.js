@@ -65,6 +65,11 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  const cardHeartIconEl = cardElement.querySelector(".card__heart-icon");
+  cardHeartIconEl.addEventListener("click", () => {
+    cardHeartIconEl.classList.toggle("card__heart-icon_active");
+  });
+
   return cardElement;
 }
 
