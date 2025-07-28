@@ -2,11 +2,6 @@
   padding: 0 16px;
 }
 
-.modal__submit:hover {
-  cursor: pointer;
-  opacity: 80%;
-}
-
 .modal__image-container {
   position: relative;
 }
