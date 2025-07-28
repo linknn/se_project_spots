@@ -46,10 +46,11 @@
   padding: 0;
   background: none;
   border: none;
-  opacity: 70%;
   color: rgba(33, 33, 33, 1);
   display: flex;
   gap: 8px;
+  opacity: 70%;
+  transition: opacity 0.5s;
 }
 
 .profile__edit-btn:hover {
@@ -71,6 +72,7 @@
   justify-content: center;
   gap: 8px;
   align-items: center;
+  transition: opacity 0.5s;
 }
 
 .profile__new-post:hover {
