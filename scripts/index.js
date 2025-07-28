@@ -39,10 +39,10 @@ const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
 const profileEditCloseBtn = profileEditModal.querySelector(".modal__close-btn");
 const profileEditFormEl = profileEditModal.querySelector(".modal__form");
-const profileEditNameInput = profileEditModal.querySelector(
+const profileEditNameInput = profileEditFormEl.querySelector(
   "#profile-name-input"
 );
-const profileEditDescInput = profileEditModal.querySelector(
+const profileEditDescInput = profileEditFormEl.querySelector(
   "#profile-desc-input"
 );
 
@@ -53,13 +53,20 @@ const newPostBtn = document.querySelector(".profile__new-post");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostFormEl = newPostModal.querySelector(".modal__form");
-const newPostNameInput = document.querySelector("#card-caption-input");
-const newPostLinkInput = document.querySelector("#card-image-input");
+const newPostNameInput = newPostFormEl.querySelector("#card-caption-input");
+const newPostLinkInput = newPostFormEl.querySelector("#card-image-input");
 
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+const imagePreviewModal = document.querySelector("#image-preview-modal");
+const imagePreviewEl = imagePreviewModal.querySelector(".modal__image");
+const imagePreviewCloseBtn = imagePreviewModal.querySelector(
+  ".modal__close_type_preview"
+);
+const imagePreviewCaption = imagePreviewModal.querySelector(".modal__caption");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -81,6 +88,13 @@ function getCardElement(data) {
   cardDeleteBtnEl.addEventListener("click", () => {
     cardElement.remove();
     cardElement = null;
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    imagePreviewEl.src = data.link;
+    imagePreviewEl.alt = data.name;
+    imagePreviewCaption.textContent = data.name;
+    openModal(imagePreviewModal);
   });
 
   return cardElement;
@@ -144,4 +158,8 @@ newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 initialCards.forEach(function (item) {
   const card = getCardElement(item);
   cardsList.append(card);
+});
+
+imagePreviewCloseBtn.addEventListener("click", function () {
+  closeModal(imagePreviewModal);
 });
