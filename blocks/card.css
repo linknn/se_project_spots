@@ -27,12 +27,13 @@
   object-fit: cover;
   border-radius: 8px;
   display: block;
+  transition: 0.5s;
 }
 
-/* how would you add opacity on hover without interfering with the delete? */
 .card__image:hover {
   cursor: pointer;
   opacity: 80%;
+  transition: 0.5s;
 }
 
 .card__content {
