@@ -69,7 +69,7 @@ const imagePreviewCloseBtn = imagePreviewModal.querySelector(
 const imagePreviewCaption = imagePreviewModal.querySelector(".modal__caption");
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  let cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
 
@@ -78,9 +78,9 @@ function getCardElement(data) {
   cardTitleEl.textContent = data.name;
 
   // Card like button
-  const cardHeartIconEl = cardElement.querySelector(".card__heart-icon");
+  const cardHeartIconEl = cardElement.querySelector(".card__heart-btn");
   cardHeartIconEl.addEventListener("click", () => {
-    cardHeartIconEl.classList.toggle("card__heart-icon_active");
+    cardHeartIconEl.classList.toggle("card__heart-btn_active");
   });
 
   // Card delete

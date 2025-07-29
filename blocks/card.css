@@ -28,6 +28,7 @@
   display: block;
 }
 
+/* how would you add opacity on hover without interfering with the delete? */
 .card__image:hover {
   cursor: pointer;
 }
@@ -49,7 +50,7 @@
   max-width: 350px;
 }
 
-.card__heart-icon {
+.card__heart-btn {
   background-image: url(../images/heart-icon.svg);
   width: 23px;
   height: 20px;
@@ -59,17 +60,17 @@
   transition: opacity 0.5s;
 }
 
-.card__heart-icon:hover {
+.card__heart-btn:hover {
   opacity: 1;
   cursor: pointer;
 }
 
-.card__heart-icon_active {
+.card__heart-btn_active {
   background-image: url(../images/liked.png);
   opacity: 1;
 }
 
-.card__heart-icon_active:hover {
+.card__heart-btn_active:hover {
   opacity: 40%;
 }
 
