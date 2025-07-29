@@ -1,5 +1,6 @@
 .modal_type_image_preview {
   padding: 0 16px;
+  z-index: 2;
 }
 
 .modal__image_container {
