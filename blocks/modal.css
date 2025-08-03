@@ -122,6 +122,10 @@
   transition: opacity 0.5s;
 }
 
+.modal__submit_type_disabled {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 630px) {
   .modal__container {
     padding: 12px;
