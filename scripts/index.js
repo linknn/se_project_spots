@@ -37,6 +37,7 @@ const initialCards = [
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
+const profileEditSubmitBtn = profileEditModal.querySelector("#profile-submit");
 const profileEditCloseBtn = profileEditModal.querySelector(".modal__close-btn");
 const profileEditFormEl = profileEditModal.querySelector(".modal__form");
 const profileEditNameInput = profileEditFormEl.querySelector(
@@ -51,6 +52,7 @@ const profileDescEl = document.querySelector(".profile__description");
 
 const newPostBtn = document.querySelector(".profile__new-post");
 const newPostModal = document.querySelector("#new-post-modal");
+const newPostSubmitBtn = newPostModal.querySelector("#card-submit");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostFormEl = newPostModal.querySelector(".modal__form");
 const newPostNameInput = newPostFormEl.querySelector("#card-caption-input");
@@ -112,6 +114,10 @@ profileEditBtn.addEventListener("click", function () {
   openModal(profileEditModal);
   profileEditNameInput.value = profileNameEl.textContent;
   profileEditDescInput.value = profileDescEl.textContent;
+  resetValidation(profileEditFormEl, [
+    profileEditNameInput,
+    profileEditDescInput,
+  ]);
 });
 
 profileEditCloseBtn.addEventListener("click", function () {
@@ -148,6 +154,8 @@ function handleAddCardSubmit(evt) {
 
   const card = getCardElement(inputValues);
   cardsList.prepend(card);
+  evt.target.reset();
+  disableButton(newPostSubmitBtn);
 
   closeModal(newPostModal);
 }
