@@ -1,4 +1,7 @@
-const showInputError = (formEl, inputEl, errorMsg) => {};
+const showInputError = (formEl, inputEl, errorMsg) => {
+  const errorMsgEl = document.querySelector(`#${inputEl.id}-error`);
+  errorMsgEl.textContent = errorMsg;
+};
 
 const checkInputValidity = (formEl, inputEl) => {
   console.log(inputEl.validationMessage);
