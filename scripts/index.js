@@ -106,7 +106,7 @@ function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" || event.key === "Esc") {
-      modal.classList.remove("modal_is-opened");
+      closeModal(modal);
     }
   });
   modal.addEventListener("click", function (evt) {
@@ -165,7 +165,7 @@ function handleAddCardSubmit(evt) {
   const card = getCardElement(inputValues);
   cardsList.prepend(card);
   evt.target.reset();
-  disableButton(settings);
+  // disableButton(settings);
   closeModal(newPostModal);
 }
 

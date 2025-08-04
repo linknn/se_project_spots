@@ -28,23 +28,19 @@ const checkInputValidity = (formEl, inputEl, config) => {
 };
 
 const hasInvalidInput = (inputList) => {
-  return inputList.some((input) => {
+  return [...inputList].some((input) => {
     return !input.validity.valid;
   });
 };
 
 const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
-    disableButton(buttonEl);
+    buttonEl.disabled = true;
+    buttonEl.classList.add(settings.inactiveButtonClass);
   } else {
     buttonEl.disabled = false;
     buttonEl.classList.remove(settings.inactiveButtonClass);
   }
-};
-
-const disableButton = (buttonEl, config) => {
-  buttonEl.disabled = true;
-  buttonEl.classList.add(settings.inactiveButtonClass);
 };
 
 const resetValidation = (formEl, inputList, config) => {
