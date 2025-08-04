@@ -104,6 +104,16 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" || event.key === "Esc") {
+      modal.classList.remove("modal_is-opened");
+    }
+  });
+  modal.addEventListener("click", function (evt) {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
 }
 
 function closeModal(modal) {
@@ -155,8 +165,7 @@ function handleAddCardSubmit(evt) {
   const card = getCardElement(inputValues);
   cardsList.prepend(card);
   evt.target.reset();
-  disableButton(newPostSubmitBtn);
-
+  disableButton(settings);
   closeModal(newPostModal);
 }
 
