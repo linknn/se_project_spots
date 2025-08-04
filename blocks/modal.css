@@ -126,6 +126,10 @@
   opacity: 50%;
 }
 
+.modal__submit_type_disabled:hover {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 630px) {
   .modal__container {
     padding: 12px;
