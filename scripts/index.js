@@ -102,18 +102,26 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
+function handleEscKeyDown(modal) {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" || event.key === "Esc") {
       closeModal(modal);
     }
   });
+}
+
+function handleOutsideModalClick(modal) {
   modal.addEventListener("click", function (evt) {
     if (evt.target === modal) {
       closeModal(modal);
     }
   });
+}
+
+function openModal(modal) {
+  modal.classList.add("modal_is-opened");
+  handleEscKeyDown(modal);
+  handleOutsideModalClick(modal);
 }
 
 function closeModal(modal) {
