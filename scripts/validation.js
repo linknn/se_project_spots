@@ -10,13 +10,13 @@ const settings = {
 const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
-  inputEl.classList.add(settings.inputErrorClass);
+  inputEl.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formEl, inputEl, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = "";
-  inputEl.classList.remove(settings.inputErrorClass);
+  inputEl.classList.remove(config.inputErrorClass);
 };
 
 const checkInputValidity = (formEl, inputEl, config) => {
@@ -36,10 +36,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
     buttonEl.disabled = true;
-    buttonEl.classList.add(settings.inactiveButtonClass);
+    buttonEl.classList.add(config.inactiveButtonClass);
   } else {
     buttonEl.disabled = false;
-    buttonEl.classList.remove(settings.inactiveButtonClass);
+    buttonEl.classList.remove(config.inactiveButtonClass);
   }
 };
 

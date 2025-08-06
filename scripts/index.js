@@ -102,40 +102,44 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function handleEscKeyDown(modal) {
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" || event.key === "Esc") {
-      closeModal(modal);
-    }
-  });
+function handleEscKeyDown(evt) {
+  // document.addEventListener("keydown", (event) => {
+  if (evt.key === "Escape" || evt.key === "Esc") {
+    const modal = document.querySelector(".modal_is-opened");
+    closeModal(modal);
+  }
+  // });
 }
 
-function handleOutsideModalClick(modal) {
-  modal.addEventListener("click", function (evt) {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
+function handleOutsideModalClick(evt) {
+  // modal.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("modal_is-opened")) {
+    closeModal(evt.target);
+  }
+  // });
 }
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
-  handleEscKeyDown(modal);
-  handleOutsideModalClick(modal);
+  document.addEventListener("keydown", handleEscKeyDown);
+  modal.addEventListener("click", handleOutsideModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscKeyDown);
+  modal.removeEventListener("click", handleOutsideModalClick);
 }
 
 profileEditBtn.addEventListener("click", function () {
   openModal(profileEditModal);
   profileEditNameInput.value = profileNameEl.textContent;
   profileEditDescInput.value = profileDescEl.textContent;
-  resetValidation(profileEditFormEl, [
-    profileEditNameInput,
-    profileEditDescInput,
-  ]);
+  resetValidation(
+    profileEditFormEl,
+    [profileEditNameInput, profileEditDescInput],
+    settings
+  );
 });
 
 profileEditCloseBtn.addEventListener("click", function () {
@@ -173,6 +177,11 @@ function handleAddCardSubmit(evt) {
   const card = getCardElement(inputValues);
   cardsList.prepend(card);
   evt.target.reset();
+  toggleButtonState(
+    [newPostNameInput, newPostLinkInput],
+    evt.submitter,
+    settings
+  );
   // disableButton(settings);
   closeModal(newPostModal);
 }
