@@ -7,6 +7,7 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
+// validation error messages
 const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
   errorMsgEl.textContent = errorMsg;
@@ -33,6 +34,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+// Disable button when invalid
 const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
     buttonEl.disabled = true;
