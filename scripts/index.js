@@ -1,3 +1,10 @@
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  toggleButtonState,
+} from "./validation.js";
+
 const initialCards = [
   {
     name: "Sunflower",
@@ -178,7 +185,6 @@ function handleAddCardSubmit(evt) {
     evt.submitter,
     settings
   );
-  // disableButton(settings);
   closeModal(newPostModal);
 }
 
@@ -193,3 +199,5 @@ initialCards.forEach(function (item) {
 imagePreviewCloseBtn.addEventListener("click", function () {
   closeModal(imagePreviewModal);
 });
+
+enableValidation(settings);
