@@ -9,20 +9,23 @@
     />
     <meta name="author" content="Link Nelson" />
     <meta name="keywords" content="HTML, CSS, Image sharing" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> -->
 
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spots logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spots logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/scp-engineering.png"
+            src="<%=require('./images/scp-engineering.png')%>"
             alt="Profile image"
             class="profile__avatar"
           />
@@ -30,11 +33,15 @@
             <h1 class="profile__name">Link Nelson</h1>
             <p class="profile__description">Nerd Extraordinare</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/pencil.svg" alt="Pencil icon" />Edit Profile
+              <img
+                src="<%=require('./images/pencil.svg')%>"
+                alt="Pencil icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__new-post">
-            <img src="./images/plus.svg" alt="Plus icon" />New Post
+            <img src="<%=require('./images/plus.svg')%>" alt="Plus icon" />New
+            Post
           </button>
         </section>
         <section class="cards page__section">
@@ -60,7 +67,7 @@
           <div class="modal__header">
             <h2 class="modal__title">Edit profile</h2>
             <button class="modal__close-btn" type="button">
-              <img src="./images/close-x.png" alt="x-icon" />
+              <img src="<%=require('./images/close-x.png')%>" alt="x-icon" />
             </button>
           </div>
           <form class="modal__form" novalidate>
@@ -101,7 +108,7 @@
           <div class="modal__header">
             <h2 class="modal__title">New post</h2>
             <button class="modal__close-btn" type="button">
-              <img src="./images/close-x.png" alt="x-icon" />
+              <img src="<%=require('./images/close-x.png')%>" alt="x-icon" />
             </button>
           </div>
           <form class="modal__form" novalidate>
@@ -140,13 +147,12 @@
             class="modal__close-btn modal__close_type_preview"
             type="button"
           >
-            <img src="./images/image-close.png" alt="x-icon" />
+            <img src="<%=require('./images/image-close.png')%>" alt="x-icon" />
           </button>
           <img src="#" alt="" class="modal__image" />
           <p class="modal__caption"></p>
         </div>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
