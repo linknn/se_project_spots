@@ -53,14 +53,20 @@ const api = new Api({
   },
 });
 
-// Create new cards
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, users]) => {
+    // Create new cards
     cards.forEach(function (item) {
       const card = getCardElement(item);
       cardsList.append(card);
     });
+    //TODO Handle the user's information
+    // set the src of the avatar image
+    // set the textContent of both the text elements
+
+    profileNameEl.textContent = users.name;
+    profileDescEl.textContent = users.about;
   })
   .catch(console.error);
 
@@ -182,10 +188,17 @@ newPostCloseBtn.addEventListener("click", function () {
 // Edit profile information
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-
-  profileNameEl.textContent = profileEditNameInput.value;
-  profileDescEl.textContent = profileEditDescInput.value;
-  closeModal(profileEditModal);
+  api
+    .editUserInfo({
+      name: profileEditNameInput.value,
+      about: profileEditDescInput.value,
+    })
+    .then((data) => {
+      profileNameEl.textContent = data.name;
+      profileDescEl.textContent = data.about;
+      closeModal(profileEditModal);
+    })
+    .catch(console.error);
 }
 
 profileEditFormEl.addEventListener("submit", handleProfileFormSubmit);
@@ -211,12 +224,6 @@ function handleAddCardSubmit(evt) {
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
-
-// // Add new cards to DOM
-// initialCards.forEach(function (item) {
-//   const card = getCardElement(item);
-//   cardsList.append(card);
-// });
 
 imagePreviewCloseBtn.addEventListener("click", function () {
   closeModal(imagePreviewModal);
