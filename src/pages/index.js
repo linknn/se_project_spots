@@ -1,47 +1,65 @@
 import "./index.css";
+
 import {
   enableValidation,
   settings,
   resetValidation,
   toggleButtonState,
 } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "Sunflower",
-    link: "https://images.unsplash.com/photo-1548291616-bfccc8db731d?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+// const initialCards = [
+//   {
+//     name: "Sunflower",
+//     link: "https://images.unsplash.com/photo-1548291616-bfccc8db731d?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "Polaroid",
-    link: "https://images.unsplash.com/photo-1576261240726-b4782dfcd02e?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+//   {
+//     name: "Polaroid",
+//     link: "https://images.unsplash.com/photo-1576261240726-b4782dfcd02e?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "Sunflower Field",
-    link: "https://images.unsplash.com/photo-1599270613570-a620f2e59f75?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+//   {
+//     name: "Sunflower Field",
+//     link: "https://images.unsplash.com/photo-1599270613570-a620f2e59f75?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "Viking Boat",
-    link: "https://images.unsplash.com/photo-1663336014741-41b84fed050f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+//   {
+//     name: "Viking Boat",
+//     link: "https://images.unsplash.com/photo-1663336014741-41b84fed050f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "White and brown owl on a petaled field",
-    link: "https://images.unsplash.com/photo-1467811884194-ae868cd3f090?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+//   {
+//     name: "White and brown owl on a petaled field",
+//     link: "https://images.unsplash.com/photo-1467811884194-ae868cd3f090?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "Bubbles",
-    link: "https://images.unsplash.com/photo-1594035519981-62c9cef33ca9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+//   {
+//     name: "Bubbles",
+//     link: "https://images.unsplash.com/photo-1594035519981-62c9cef33ca9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
 
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//   {
+//     name: "Golden Gate Bridge",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//   },
+// ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "9174fee8-14cf-423d-8847-48b971305a7a",
+    "Content-Type": "application/json",
   },
-];
+});
+
+// Create new cards
+api.getInitialCards().then((cards) => {
+  cards.forEach(function (item) {
+    const card = getCardElement(item);
+    cardsList.append(card);
+  });
+});
 
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
@@ -191,11 +209,11 @@ function handleAddCardSubmit(evt) {
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 
-// Add new cards to DOM
-initialCards.forEach(function (item) {
-  const card = getCardElement(item);
-  cardsList.append(card);
-});
+// // Add new cards to DOM
+// initialCards.forEach(function (item) {
+//   const card = getCardElement(item);
+//   cardsList.append(card);
+// });
 
 imagePreviewCloseBtn.addEventListener("click", function () {
   closeModal(imagePreviewModal);
