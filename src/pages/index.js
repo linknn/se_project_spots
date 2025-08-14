@@ -61,11 +61,10 @@ api
       const card = getCardElement(item);
       cardsList.append(card);
     });
-    //TODO Handle the user's information
-    // set the src of the avatar image
-
     profileNameEl.textContent = users.name;
     profileDescEl.textContent = users.about;
+    // not textcontent, set the src
+    // avatarEditFormEl.textContent = users.avatar;
   })
   .catch(console.error);
 
@@ -91,6 +90,13 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostFormEl = newPostModal.querySelector(".modal__form");
 const newPostNameInput = newPostFormEl.querySelector("#card-caption-input");
 const newPostLinkInput = newPostFormEl.querySelector("#card-image-input");
+
+const avatarEditBtn = document.querySelector(".profile__avatar-btn");
+const avatarEditModal = document.querySelector("#edit-avatar-modal");
+const avatarEditCloseBtn = avatarEditModal.querySelector(".modal__close-btn");
+const avatarEditSubmitBtn = avatarEditModal.querySelector("#card-submit");
+const avatarInput = avatarEditModal.querySelector("#profile-avatar-input");
+const avatarEditFormEl = avatarEditModal.querySelector(".modal__form");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -160,7 +166,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscKeyDown);
   modal.removeEventListener("click", handleOutsideModalClick);
 }
-
+// Open and close modals
 profileEditBtn.addEventListener("click", function () {
   openModal(profileEditModal);
   profileEditNameInput.value = profileNameEl.textContent;
@@ -183,6 +189,27 @@ newPostBtn.addEventListener("click", function () {
 newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
+
+avatarEditBtn.addEventListener("click", function () {
+  openModal(avatarEditModal);
+});
+
+avatarEditCloseBtn.addEventListener("click", function () {
+  closeModal(avatarEditModal);
+});
+
+avatarEditFormEl.addEventListener("submit", handleAvatarEditSubmit);
+
+function handleAvatarEditSubmit(evt) {
+  evt.preventDefault();
+  api
+    .editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      closeModal(avatarEditModal);
+      console.log(data.avatar);
+    })
+    .catch(console.error);
+}
 
 // Edit profile information
 function handleProfileFormSubmit(evt) {
