@@ -23,14 +23,23 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/scp-engineering.png')%>"
-            alt="Profile image"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/light-pencil.png')%>"
+                alt="Pencil icon"
+                class="profile__avatar-edit"
+              />
+            </button>
+            <img
+              src="<%=require('./images/scp-engineering.png')%>"
+              alt="Profile image"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
-            <h1 class="profile__name">Link Nelson</h1>
-            <p class="profile__description">Nerd Extraordinare</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
             <button type="button" class="profile__edit-btn">
               <img
                 src="<%=require('./images/pencil.svg')%>"

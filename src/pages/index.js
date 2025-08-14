@@ -63,7 +63,6 @@ api
     });
     //TODO Handle the user's information
     // set the src of the avatar image
-    // set the textContent of both the text elements
 
     profileNameEl.textContent = users.name;
     profileDescEl.textContent = users.about;
