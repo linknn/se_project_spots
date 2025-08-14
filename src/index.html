@@ -189,19 +189,28 @@
         </div>
       </div>
       <div class="modal" id="delete-modal">
-        <div class="modal__container">
+        <div class="modal__container delete_container">
           <div class="modal__header">
-            <h2 class="modal__title">
+            <h2 class="modal__title delete_title">
               Are you sure you want to delete this image?
             </h2>
-            <button class="modal__close-btn" type="button">
-              <img src="<%=require('./images/close-x.png')%>" alt="x-icon" />
+
+            <button
+              class="modal__close-btn modal__close_type_delete"
+              type="button"
+            >
+              <img
+                src="<%=require('./images/image-close.png')%>"
+                alt="x-icon"
+              />
             </button>
           </div>
-          <form class="modal__form" id="delete-form" novalidate>
-            <button class="modal__submit" type="submit">Delete</button>
+          <div class="delete__modal-btns">
+            <button class="modal__submit btn_delete" type="submit">
+              Delete
+            </button>
             <button class="modal__submit" type="button">Cancel</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

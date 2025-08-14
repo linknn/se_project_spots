@@ -1,0 +1,30 @@
+.delete_container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  max-width: 630px;
+}
+
+.delete_title {
+  text-align: center;
+  font-size: 24px;
+}
+
+.delete__modal-btns {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.btn_delete {
+  background-color: #ff6565;
+  color: #212121;
+}
+
+.modal__close_type_delete {
+  position: absolute;
+  right: -52.5px;
+  top: 4px;
+}
