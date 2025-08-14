@@ -98,6 +98,9 @@ const avatarEditSubmitBtn = avatarEditModal.querySelector("#card-submit");
 const avatarInput = avatarEditModal.querySelector("#profile-avatar-input");
 const avatarEditFormEl = avatarEditModal.querySelector(".modal__form");
 
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
@@ -121,16 +124,11 @@ function getCardElement(data) {
 
   // Card like button
   const cardHeartIconEl = cardElement.querySelector(".card__heart-btn");
-  cardHeartIconEl.addEventListener("click", () => {
-    cardHeartIconEl.classList.toggle("card__heart-btn_active");
-  });
+  cardHeartIconEl.addEventListener("click", handleCardHeartIcon);
 
   // Card delete
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
-  cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
-    cardElement = null;
-  });
+  cardDeleteBtnEl.addEventListener("click", handleDeleteCard);
 
   cardImageEl.addEventListener("click", () => {
     imagePreviewEl.src = data.link;
@@ -141,6 +139,19 @@ function getCardElement(data) {
 
   return cardElement;
 }
+
+function handleCardHeartIcon(evt) {
+  evt.target.classList.toggle("card__heart-btn_active");
+}
+
+function handleDeleteCard(evt) {
+  openModal(deleteModal);
+  // evt.target.closest(".card").remove();
+}
+
+deleteModalCloseBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
+});
 
 function handleEscKeyDown(evt) {
   if (evt.key === "Escape" || evt.key === "Esc") {
