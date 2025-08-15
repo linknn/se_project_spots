@@ -106,7 +106,8 @@
 }
 
 .modal__submit {
-  padding: 18px 58px;
+  padding-top: 18px;
+  padding-bottom: 18px;
   max-width: 156px;
   font-size: 16px;
   border: none;
