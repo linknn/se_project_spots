@@ -265,6 +265,8 @@ function handleAvatarEditSubmit(evt) {
 // Edit profile information
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+
+  profileEditSubmitBtn.textContent = "Saving...";
   api
     .editUserInfo({
       name: profileEditNameInput.value,
@@ -275,7 +277,10 @@ function handleProfileFormSubmit(evt) {
       profileDescEl.textContent = data.about;
       closeModal(profileEditModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      profileEditSubmitBtn.textContent = "Save";
+    });
 }
 
 profileEditFormEl.addEventListener("submit", handleProfileFormSubmit);
