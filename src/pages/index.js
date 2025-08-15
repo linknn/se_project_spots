@@ -120,6 +120,7 @@ function getCardElement(data) {
 
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
+  // cardImageEl.id = data.id;
   cardTitleEl.textContent = data.name;
 
   // Card like button
@@ -249,8 +250,10 @@ function handleAddCardSubmit(evt) {
     link: newPostLinkInput.value,
   };
 
-  const card = getCardElement(inputValues);
-  cardsList.prepend(card);
+  api.createCard(inputValues).then(() => {
+    const card = getCardElement(inputValues);
+    cardsList.prepend(card);
+  });
   evt.target.reset();
   toggleButtonState(
     [newPostNameInput, newPostLinkInput],
