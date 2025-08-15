@@ -174,5 +174,6 @@
   .profile__new-post {
     margin: 0 auto;
     width: 288px;
+    max-width: 100%;
   }
 }

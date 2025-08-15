@@ -272,6 +272,7 @@ function handleAvatarEditSubmit(evt) {
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
+      avatarImage.src = data.avatar;
       closeModal(avatarEditModal);
       console.log(data.avatar);
     })
