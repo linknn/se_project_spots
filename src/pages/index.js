@@ -47,6 +47,7 @@ import Api from "../utils/Api.js";
 // ];
 
 const api = new Api({
+  // Instantiate api
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     authorization: "9174fee8-14cf-423d-8847-48b971305a7a",
@@ -64,8 +65,7 @@ api
     });
     profileNameEl.textContent = users.name;
     profileDescEl.textContent = users.about;
-    // not textcontent, set the src
-    // avatarEditFormEl.textContent = users.avatar;
+    avatarImage.src = users.avatar;
   })
   .catch(console.error);
 
@@ -101,6 +101,7 @@ const avatarEditCloseBtn = avatarEditModal.querySelector(".modal__close-btn");
 const avatarEditSubmitBtn = avatarEditModal.querySelector("#card-submit");
 const avatarInput = avatarEditModal.querySelector("#profile-avatar-input");
 const avatarEditFormEl = avatarEditModal.querySelector(".modal__form");
+const avatarImage = document.querySelector(".profile__avatar");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -265,6 +266,7 @@ avatarEditCloseBtn.addEventListener("click", function () {
 
 avatarEditFormEl.addEventListener("submit", handleAvatarEditSubmit);
 
+// Send avatar info
 function handleAvatarEditSubmit(evt) {
   evt.preventDefault();
   api
