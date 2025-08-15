@@ -68,6 +68,7 @@ api
   })
   .catch(console.error);
 
+// Profile selectors
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
 const profileEditSubmitBtn = profileEditModal.querySelector("#profile-submit");
@@ -83,6 +84,7 @@ const profileEditDescInput = profileEditFormEl.querySelector(
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescEl = document.querySelector(".profile__description");
 
+// New card selectors
 const newPostBtn = document.querySelector(".profile__new-post");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostSubmitBtn = newPostModal.querySelector("#card-submit");
@@ -91,6 +93,7 @@ const newPostFormEl = newPostModal.querySelector(".modal__form");
 const newPostNameInput = newPostFormEl.querySelector("#card-caption-input");
 const newPostLinkInput = newPostFormEl.querySelector("#card-image-input");
 
+// Avatar selectors
 const avatarEditBtn = document.querySelector(".profile__avatar-btn");
 const avatarEditModal = document.querySelector("#edit-avatar-modal");
 const avatarEditCloseBtn = avatarEditModal.querySelector(".modal__close-btn");
@@ -98,14 +101,18 @@ const avatarEditSubmitBtn = avatarEditModal.querySelector("#card-submit");
 const avatarInput = avatarEditModal.querySelector("#profile-avatar-input");
 const avatarEditFormEl = avatarEditModal.querySelector(".modal__form");
 
-const deleteModal = document.querySelector("#delete-modal");
-const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
-
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
 
+// Delete selectors
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteForm = deleteModal.querySelector("#delete-form");
+let selectedCard, selectedCardId;
+
+// Preview modal selectors
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const imagePreviewEl = imagePreviewModal.querySelector(".modal__image");
 const imagePreviewCloseBtn = imagePreviewModal.querySelector(
@@ -129,7 +136,9 @@ function getCardElement(data) {
 
   // Card delete
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
-  cardDeleteBtnEl.addEventListener("click", handleDeleteCard);
+  cardDeleteBtnEl.addEventListener("click", (evt) =>
+    handleDeleteCard(cardElement, data._id)
+  );
 
   cardImageEl.addEventListener("click", () => {
     imagePreviewEl.src = data.link;
@@ -145,9 +154,22 @@ function handleCardHeartIcon(evt) {
   evt.target.classList.toggle("card__heart-btn_active");
 }
 
-function handleDeleteCard(evt) {
+function handleDeleteCard(cardElement, cardId) {
+  selectedCard = cardElement;
+  selectedCardId = cardId;
   openModal(deleteModal);
-  // evt.target.closest(".card").remove();
+}
+
+function handleDeleteSubmit(evt) {
+  evt.preventDefault();
+  api
+    .deleteCard(selectedCardId)
+    .then(() => {
+      // TODO remove card from the dom
+      selectedCard.remove();
+      closeModal(deleteModal);
+    })
+    .catch(console.error);
 }
 
 deleteModalCloseBtn.addEventListener("click", function () {
@@ -167,6 +189,7 @@ function handleOutsideModalClick(evt) {
   }
 }
 
+// Open and close modals
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscKeyDown);
@@ -178,7 +201,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscKeyDown);
   modal.removeEventListener("click", handleOutsideModalClick);
 }
-// Open and close modals
+
 profileEditBtn.addEventListener("click", function () {
   openModal(profileEditModal);
   profileEditNameInput.value = profileNameEl.textContent;
@@ -250,8 +273,8 @@ function handleAddCardSubmit(evt) {
     link: newPostLinkInput.value,
   };
 
-  api.createCard(inputValues).then(() => {
-    const card = getCardElement(inputValues);
+  api.createCard(inputValues).then((data) => {
+    const card = getCardElement(data);
     cardsList.prepend(card);
   });
   evt.target.reset();
@@ -262,6 +285,8 @@ function handleAddCardSubmit(evt) {
   );
   closeModal(newPostModal);
 }
+
+deleteForm.addEventListener("submit", handleDeleteSubmit);
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 
