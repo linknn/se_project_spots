@@ -132,11 +132,13 @@ function getCardElement(data) {
 
   // Card like button
   const cardHeartIconEl = cardElement.querySelector(".card__heart-btn");
-  cardHeartIconEl.addEventListener("click", handleCardHeartIcon);
+  cardHeartIconEl.addEventListener("click", (evt) =>
+    handleCardHeartIcon(evt, data._id)
+  );
 
   // Card delete
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
-  cardDeleteBtnEl.addEventListener("click", (evt) =>
+  cardDeleteBtnEl.addEventListener("click", () =>
     handleDeleteCard(cardElement, data._id)
   );
 
@@ -150,8 +152,23 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function handleCardHeartIcon(evt) {
-  evt.target.classList.toggle("card__heart-btn_active");
+function handleCardHeartIcon(evt, id) {
+  const cardHeartIcon = evt.target;
+  const isLiked = cardHeartIcon.classList.contains("card__heart-btn_active");
+
+  api
+    .handleCardLike(id, isLiked)
+    .then((likedCard) => {
+      cardHeartIcon.classList.toggle("card__heart-btn_active");
+    })
+    // if (isLiked)
+    .catch(console.error);
+
+  // 1. check whether care is currently liked or not
+  //      const isLiked = ???
+  // 2. call handleCardLike method, passing appropriate arguments
+  // 3. handle response (.then .catch)
+  // 4. in the .then toggle active class
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -165,7 +182,6 @@ function handleDeleteSubmit(evt) {
   api
     .deleteCard(selectedCardId)
     .then(() => {
-      // TODO remove card from the dom
       selectedCard.remove();
       closeModal(deleteModal);
     })
