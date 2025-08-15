@@ -23,8 +23,37 @@
   color: #212121;
 }
 
+.btn_cancel {
+  border: 1px solid #212121;
+  background-color: #fcf5e5;
+  color: #212121;
+}
+
 .modal__close_type_delete {
   position: absolute;
   right: -52.5px;
   top: 4px;
+}
+
+@media screen and (max-width: 630px) {
+  .delete__modal-btns {
+    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn_cancel,
+  .btn_delete {
+    max-width: 156px;
+    max-height: 52px;
+  }
+
+  .delete_title {
+    margin-bottom: 20px;
+  }
+
+  .modal__close_type_delete {
+    top: -48px;
+    right: 0;
+  }
 }
