@@ -25,6 +25,7 @@
   visibility: hidden;
   margin: 0;
   padding: 0;
+  padding: 12px;
   background-color: #00000080;
 }
 
@@ -37,11 +38,9 @@
 .profile__avatar-btn:after {
   content: "Edit Avatar";
   color: #ffffff;
-  padding-bottom: 12px;
 }
 
 .profile__avatar-edit {
-  padding-bottom: 12px;
   margin: 0;
 }
 
@@ -49,6 +48,7 @@
   border-radius: 8%;
   height: 190px;
   width: 190px;
+  display: block;
 }
 
 .profile__column {
@@ -129,7 +129,6 @@
   }
 
   .profile__avatar {
-    margin: 0 0 12px;
     width: 80px;
     height: 80px;
   }
@@ -140,14 +139,15 @@
     height: 23.34px;
     bottom: 4.6px;
     right: 4.6px;
+    padding-bottom: 0;
     border-radius: 6px;
+    margin-bottom: 4.6px;
   }
 
   .profile__avatar-btn:after {
-    content: "";
+    content: unset;
   }
 
-  /* Center pencil in button */
   .profile__avatar-edit {
     align-items: center;
     justify-content: center;
@@ -175,5 +175,9 @@
     margin: 0 auto;
     width: 288px;
     max-width: 100%;
+  }
+
+  .profile__avatar-container {
+    margin: 0 0 12px;
   }
 }
