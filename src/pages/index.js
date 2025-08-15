@@ -6,6 +6,7 @@ import {
   resetValidation,
   toggleButtonState,
 } from "../scripts/validation.js";
+import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 // const initialCards = [
@@ -112,6 +113,8 @@ const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const deleteForm = deleteModal.querySelector("#delete-form");
 let selectedCard, selectedCardId;
 
+const deleteCancel = document.querySelector(".btn_cancel");
+
 // Preview modal selectors
 const imagePreviewModal = document.querySelector("#image-preview-modal");
 const imagePreviewEl = imagePreviewModal.querySelector(".modal__image");
@@ -179,14 +182,29 @@ function handleDeleteCard(cardElement, cardId) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Delete", "Deleting...");
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setTimeout(() => {
+        setButtonText(submitBtn, false, "Delete", "Deleting...");
+      }, 300);
+    });
 }
+
+deleteCancel.addEventListener("click", function () {
+  setButtonText(deleteCancel, true, "Cancel", "Canceling...");
+  closeModal(deleteModal);
+  setTimeout(() => {
+    setButtonText(deleteCancel, false, "Cancel", "Canceling...");
+  }, 300);
+});
 
 deleteModalCloseBtn.addEventListener("click", function () {
   closeModal(deleteModal);
@@ -265,8 +283,8 @@ function handleAvatarEditSubmit(evt) {
 // Edit profile information
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-
-  profileEditSubmitBtn.textContent = "Saving...";
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .editUserInfo({
       name: profileEditNameInput.value,
@@ -279,7 +297,9 @@ function handleProfileFormSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      profileEditSubmitBtn.textContent = "Save";
+      setTimeout(() => {
+        setButtonText(submitBtn, false);
+      }, 300);
     });
 }
 
@@ -293,11 +313,21 @@ function handleAddCardSubmit(evt) {
     name: newPostNameInput.value,
     link: newPostLinkInput.value,
   };
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
+  api
+    .createCard(inputValues)
+    .then((data) => {
+      const card = getCardElement(data);
+      cardsList.prepend(card);
+    })
+    .catch(console.error)
 
-  api.createCard(inputValues).then((data) => {
-    const card = getCardElement(data);
-    cardsList.prepend(card);
-  });
+    .finally(() => {
+      setTimeout(() => {
+        setButtonText(submitBtn, false);
+      }, 300);
+    });
   evt.target.reset();
   toggleButtonState(
     [newPostNameInput, newPostLinkInput],
