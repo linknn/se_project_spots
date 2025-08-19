@@ -193,7 +193,7 @@
   padding: 0;
 }
 
-.btn_delete {
+.modal__delete-btn {
   background-color: #ff6565;
   color: #212121;
   width: 156px;
@@ -249,7 +249,7 @@
   }
 
   .btn_cancel,
-  .btn_delete {
+  .modal__delete-btn {
     max-width: 156px;
     max-height: 52px;
   }
