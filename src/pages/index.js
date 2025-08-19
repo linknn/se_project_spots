@@ -269,6 +269,8 @@ avatarEditFormEl.addEventListener("submit", handleAvatarEditSubmit);
 // Send avatar info
 function handleAvatarEditSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
@@ -276,7 +278,12 @@ function handleAvatarEditSubmit(evt) {
       closeModal(avatarEditModal);
       console.log(data.avatar);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setTimeout(() => {
+        setButtonText(submitBtn, false);
+      }, 300);
+    });
 }
 
 // Edit profile information
